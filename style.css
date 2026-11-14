@@ -1,0 +1,533 @@
+/* ==========================================================
+   RESET & BASE STYLING
+   ========================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --bg-gradient: radial-gradient(ellipse 120% 90% at 50% 5%, #2a144c 0%, #170b2b 45%, #0d0619 100%);
+  --gold-gradient: linear-gradient(180deg, #fff799 0%, #ffd027 48%, #f59e0b 100%);
+  --purple-btn: linear-gradient(90deg, #7c3aed 0%, #9d4edd 100%);
+  --teal-btn: linear-gradient(90deg, #0d9488 0%, #06b6d4 100%);
+  --blue-accent: #0284c7;
+  --card-radius: 22px;
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background: #0d0619;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: #ffffff;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background Particle Canvas */
+#particles-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================================
+   LAYOUT & CONTAINER
+   ========================================================== */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px 14px 48px 14px;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+/* ==========================================================
+   TOP JACKPOT BANNER
+   ========================================================== */
+.banner-card {
+  width: 100%;
+  margin-bottom: 22px;
+  border-radius: var(--card-radius);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 25px rgba(147, 51, 234, 0.2);
+  overflow: hidden;
+  position: relative;
+  background: #190e30;
+  transform: translateZ(0);
+}
+
+.banner-media-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Subtle Shimmer Sweep Across Banner */
+.banner-shimmer {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+  transform: skewX(-22deg);
+  animation: bannerSweep 7s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes bannerSweep {
+  0% { left: -150%; }
+  35% { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* ==========================================================
+   HEADER SECTION
+   ========================================================== */
+.header-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.main-title {
+  font-family: var(--font-heading);
+  font-size: 29px;
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.3px;
+  text-transform: capitalize;
+  margin-bottom: 14px;
+  
+  /* Golden Metallic Gradient */
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 3px 10px rgba(234, 179, 8, 0.3));
+}
+
+.subtitle-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.divider-line {
+  flex: 1;
+  max-width: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 100%);
+}
+
+.subtitle-divider .divider-line:last-child {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+}
+
+.subtitle-text {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(226, 232, 240, 0.8);
+  text-transform: uppercase;
+}
+
+/* ==========================================================
+   CARDS CONTAINER & GLASSMORPHISM CARDS
+   ========================================================== */
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.link-card {
+  width: 100%;
+  border-radius: var(--card-radius);
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.link-card:active {
+  transform: scale(0.985);
+}
+
+/* Card 1: Purple Theme (Jungle Haan) */
+.card-purple {
+  background: linear-gradient(135deg, rgba(122, 90, 206, 0.42) 0%, rgba(65, 38, 118, 0.58) 100%);
+  border: 1.5px solid rgba(168, 85, 247, 0.38);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(147, 51, 234, 0.15);
+}
+
+.card-purple:hover {
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42), 0 0 20px rgba(147, 51, 234, 0.25);
+}
+
+/* Card 2: Teal Theme (Sabka Game) */
+.card-teal {
+  background: linear-gradient(135deg, rgba(20, 115, 115, 0.42) 0%, rgba(13, 58, 65, 0.58) 100%);
+  border: 1.5px solid rgba(45, 212, 191, 0.38);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(20, 184, 166, 0.15);
+}
+
+.card-teal:hover {
+  border-color: rgba(45, 212, 191, 0.6);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42), 0 0 20px rgba(20, 184, 166, 0.25);
+}
+
+/* Card 3: Blue Theme (Telegram) */
+.card-blue {
+  background: linear-gradient(135deg, rgba(14, 82, 126, 0.42) 0%, rgba(9, 36, 62, 0.58) 100%);
+  border: 1.5px solid rgba(14, 165, 233, 0.38);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(14, 165, 233, 0.15);
+  cursor: pointer;
+  padding: 13px 16px;
+}
+
+.card-blue:hover {
+  border-color: rgba(14, 165, 233, 0.6);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42), 0 0 20px rgba(14, 165, 233, 0.25);
+}
+
+/* ==========================================================
+   APP ICON CONTAINER & BADGE
+   ========================================================== */
+.card-icon-container {
+  flex-shrink: 0;
+  width: 76px;
+  height: 76px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-inner-box {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ==========================================================
+   GAME DETAILS & ACTIONS
+   ========================================================== */
+.card-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.game-title {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Download Button (Pill) */
+.btn-download {
+  flex: 1;
+  height: 38px;
+  border-radius: 9999px;
+  text-decoration: none;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  user-select: none;
+}
+
+.btn-download:active {
+  transform: scale(0.96);
+}
+
+.btn-purple {
+  background: var(--purple-btn);
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
+}
+
+.btn-purple:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.6);
+}
+
+.btn-teal {
+  background: var(--teal-btn);
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.45);
+}
+
+.btn-teal:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 6px 18px rgba(6, 182, 212, 0.6);
+}
+
+/* Share Button (Squircle) */
+.btn-share {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+  user-select: none;
+}
+
+.btn-share:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-share:active {
+  transform: scale(0.92);
+}
+
+.icon-svg {
+  width: 17px;
+  height: 17px;
+  display: block;
+}
+
+/* ==========================================================
+   TELEGRAM CARD
+   ========================================================== */
+.telegram-card {
+  padding: 13px 16px;
+  gap: 14px;
+}
+
+.telegram-icon-container {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.telegram-logo-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #0088cc 0%, #0099e6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.35);
+}
+
+.tg-paperplane-svg {
+  width: 25px;
+  height: 25px;
+  display: block;
+}
+
+.telegram-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.telegram-title {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+.telegram-handle {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: #7dd3fc;
+  line-height: 1.3;
+}
+
+.telegram-action {
+  flex-shrink: 0;
+}
+
+.btn-arrow-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.55);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+}
+
+.btn-arrow-circle svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+.telegram-card:hover .btn-arrow-circle {
+  transform: translateX(3px);
+  box-shadow: 0 0 18px rgba(2, 132, 199, 0.8);
+}
+
+/* ==========================================================
+   TOAST POPUP NOTIFICATION
+   ========================================================== */
+.toast-popup {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(22, 15, 38, 0.92);
+  border: 1px solid rgba(168, 85, 247, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 85, 247, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 11px 20px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+}
+
+.toast-popup.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toast-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* ==========================================================
+   RESPONSIVE OPTIMIZATIONS
+   ========================================================== */
+@media (max-width: 360px) {
+  .page-wrapper {
+    padding: 12px 10px 36px 10px;
+  }
+  .main-title {
+    font-size: 25px;
+  }
+  .card-icon-container {
+    width: 66px;
+    height: 66px;
+  }
+  .game-title {
+    font-size: 16px;
+  }
+  .btn-download {
+    font-size: 12.5px;
+    height: 36px;
+  }
+}
